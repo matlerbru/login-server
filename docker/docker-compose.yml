@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+
+    login-server:
+        build: login-server
+        image: mlb/login-server
+        container_name: login-server
+        ports:
+            - "22222:22"

@@ -1,0 +1,15 @@
+[Unit]
+Description=%i service with docker-compose
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+
+RemainAfterExit=True
+
+ExecStart=/usr/bin/docker-compose -f <path>/docker-compose.yml start
+ExecStop=/usr/bin/docker-compose -f <path>/docker-compose.yml stop
+
+[Install]
+WantedBy=multi-user.target
