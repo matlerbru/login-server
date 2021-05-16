@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 LABEL author="Mathias Lerkenfelt Brunhøj"
 
 WORKDIR /
-
+RUN useradd -ms /bin/bash login
 RUN apt-get update && apt-get install -y \
   nano \
   curl \

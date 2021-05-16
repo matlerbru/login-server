@@ -28,7 +28,7 @@
 # Authentication:
 
 #LoginGraceTime 2m
-PermitRootLogin yes
+PermitRootLogin no
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
@@ -112,6 +112,9 @@ AcceptEnv LANG LC_*
 
 # override default of no subsystems
 Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+# Default command (no shell)
+ForceCommand /bin/false
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
