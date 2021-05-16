@@ -1,4 +1,5 @@
 name:=login-server
+port:=22222
 
 path:=/opt/${name}
 volume:=/var/${name}
@@ -16,12 +17,16 @@ else
 	@cp systemd/template.service bin/${name}.service
 	@sed -i 's@<path>@${path}@gm' bin/${name}.service
 
+	@cp -r docker bin/docker
+	@sed -i 's@<name>@${name}@gm' bin/docker/docker-compose.yml
+	@sed -i 's@<port>@${port}@gm' bin/docker/docker-compose.yml
+
 #create /var
 	@mkdir ${volume}
 	@touch ${volume}/authorized_keys
 
 #copy docker files to /opt 
-	@cp -r docker ${path}
+	@cp -r bin/docker ${path}
 	@/usr/bin/docker-compose -f ${path}/docker-compose.yml up -d  --build --remove-orphans --quiet-pull > docker.log && rm docker.log
 
 #create and configure systemd service

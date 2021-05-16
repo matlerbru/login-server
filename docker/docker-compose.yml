@@ -3,10 +3,10 @@ version: "3.4"
 services:
 
     login-server:
-        build: login-server
-        image: mlb/login-server
-        container_name: login-server
+        build: <name>
+        image: mlb/<name>
+        container_name: <name>
         ports:
-            - "22222:22"
+            - "<port>:22"
         volumes:
-            - /var/login-server/authorized_keys:/etc/ssh/authorized_keys
+            - /var/<name>/authorized_keys:/etc/ssh/authorized_keys
