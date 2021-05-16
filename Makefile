@@ -1,6 +1,7 @@
 name:=login-server
 
 path:=/opt/${name}
+volume:=/var/${name}
 service:=/etc/systemd/system/${name}.service
 
 container_id:=$(shell docker ps -a | grep ${name} | awk '{print $$1}')
@@ -15,9 +16,13 @@ else
 	@cp systemd/template.service bin/${name}.service
 	@sed -i 's@<path>@${path}@gm' bin/${name}.service
 
+#create /var
+	@mkdir ${volume}
+	@touch ${volume}/authorized_keys
+
 #copy docker files to /opt 
 	@cp -r docker ${path}
-	@/usr/bin/docker-compose -f ${path}/docker-compose.yml up -d --remove-orphans --quiet-pull > docker.log && rm docker.log
+	@/usr/bin/docker-compose -f ${path}/docker-compose.yml up -d  --build --remove-orphans --quiet-pull > docker.log && rm docker.log
 
 #create and configure systemd service
 	@cp bin/${name}.service ${service}
@@ -42,6 +47,9 @@ endif
 ifneq ($(shell test -d bin && echo 'exists'),)
 	@rm -rf bin 
 endif
+ifneq ($(shell test -f docker.log && echo 'exists'),)
+	@rm -f docker.log 
+endif
 #remove docker
 ifneq (${container_id},)
 	@/usr/bin/docker-compose -f ${path}/docker-compose.yml down	
@@ -50,8 +58,10 @@ ifneq (${image_id},)
 	@docker rmi ${image_id}
 endif
 ifneq ($(shell test -d ${path} && echo 'exists'),)
-	@/usr/bin/docker-compose -f ${path}/docker-compose.yml down	
 	@rm -rf ${path} 
+endif
+ifneq ($(shell test -d ${volume} && echo 'exists'),)
+	@rm -rf ${volume} 
 endif
 
 reinstall:

@@ -8,3 +8,5 @@ services:
         container_name: login-server
         ports:
             - "22222:22"
+        volumes:
+            - /var/login-server/authorized_keys:/etc/ssh/authorized_keys
