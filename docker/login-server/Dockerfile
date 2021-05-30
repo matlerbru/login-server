@@ -8,6 +8,7 @@ RUN useradd -ms /bin/bash login
 RUN apt-get update && apt-get install -y \
   nano \
   curl \
+  rsyslog \
   openssh-server \
   && rm -f /etc/ssh/sshd_config \
   && touch /etc/ssh/authorized_keys
