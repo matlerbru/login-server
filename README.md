@@ -21,7 +21,7 @@ Authentication is by default only possible by public key.
 
 To setup the system, clone the repository to a folder and type `sudo make`.
 
-In the top of the makefile it is possible to set another name for the application and change the ssh port (default `login-server` and `22222`).
+In the top of the makefile it is possible to set another name for the application and change the ssh port (default `login-server` and `21986`).
 
 To uninstall the application type `sudo make uninstall` inside the cloned folder.
 
@@ -33,7 +33,7 @@ Type `sudo make clean` to remove installation artifacts. (also done by `make uni
 
 Append public keys to `/var/login-server/authorized_keys`.
 
-To create tunnel: `ssh -Np 22222 login@<host>`.
+To create tunnel: `ssh -Np 21986 login@<host>`.
 
 To jump: `ssh -j login@<host> <destination_user>@<destination_host>`.
 

@@ -1,5 +1,5 @@
 name:=login-server
-port:=22222
+port:=21986
 
 path:=/opt/${name}
 volume:=/var/${name}
