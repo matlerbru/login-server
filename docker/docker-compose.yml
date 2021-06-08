@@ -10,3 +10,4 @@ services:
             - "<port>:22"
         volumes:
             - /var/<name>/authorized_keys:/etc/ssh/authorized_keys
+            - /var/<name>/auth.log:/var/log/auth.log
