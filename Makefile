@@ -64,6 +64,8 @@ endif
 
 update:
 ifneq ($(shell test -f ${service} && echo 'exists'),)
+	@mkdir backup
+
 	@cp ${volume}/authorized_keys backup
 	@cp ${volume}/auth.log backup
 
