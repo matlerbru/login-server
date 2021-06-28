@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This project is to create a docker container for a simple ssh host, controlled by systemd.
+This project is to create a docker container for a simple ssh host.
 
 The ssh host is setup to act as a jump host or for tunneling.
 
@@ -12,7 +12,6 @@ Authentication is by default only possible by public key.
 
 #### prerequisites
 
-- systemd
 - docker
 - docker-compose
 - make
@@ -20,8 +19,6 @@ Authentication is by default only possible by public key.
 #### Setup
 
 To setup the system, clone the repository to a folder and type `sudo make install`.
-
-In the top of the makefile it is possible to set another name for the application and change the ssh port (default `login-server` and `21986`).
 
 To uninstall the application type `sudo make uninstall` inside the cloned folder.
 

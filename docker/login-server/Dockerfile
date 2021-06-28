@@ -4,9 +4,10 @@ FROM ubuntu:18.04
 LABEL author="Mathias Lerkenfelt Brunhøj"
 
 WORKDIR /
+SHELL ["/bin/bash", "-c"]
+
 RUN useradd -ms /bin/bash login
 RUN apt-get update && apt-get install -y \
-  nano \
   curl \
   rsyslog \
   openssh-server \

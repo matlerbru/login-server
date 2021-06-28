@@ -2,14 +2,14 @@ version: "3.4"
 
 services:
 
-    <name>:
+    login-server:
         build:
-            context: <name>
+            context: login-server
             network: host
-        image: mlb/<name>
-        container_name: <name>
+        image: mlb/login-server
+        container_name: login-server
         ports:
-            - "<port>:22"
+            - "21986:22"
         volumes:
-            - /var/<name>/authorized_keys:/etc/ssh/authorized_keys
-            - /var/<name>/auth.log:/var/log/auth.log
+            - /var/login-server/authorized_keys:/etc/ssh/authorized_keys
+            - /var/login-server/auth.log:/var/log/auth.log
