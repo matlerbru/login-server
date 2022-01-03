@@ -27,10 +27,10 @@ endif
 ifneq (${image_id},)
 	@docker rmi ${image_id}
 endif
-ifneq ($(shell test -d ${path} && echo 'exists'),)
+ifneq ($(shell [ -d ${path} ] && echo 'exists'),)
 	@rm -rf ${path} 
 endif
-ifneq ($(shell test -d ${volume} && echo 'exists'),)
+ifneq ($(shell [ -d ${volume} ] && echo 'exists'),)
 	@rm -rf ${volume} 
 endif
 

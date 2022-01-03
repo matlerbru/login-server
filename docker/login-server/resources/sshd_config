@@ -27,7 +27,7 @@ LogLevel VERBOSE
 
 # Authentication:
 
-LoginGraceTime 1m
+LoginGraceTime 5m
 PermitRootLogin no
 #StrictModes yes
 MaxAuthTries 2
